@@ -2,6 +2,7 @@ package sources
 
 import (
 	"encoding/json"
+	"github.com/semyon-dev/gpn-tc-backend/config"
 	"github.com/semyon-dev/gpn-tc-backend/model"
 	"io/ioutil"
 	"log"
@@ -11,7 +12,7 @@ import (
 
 func ParseHabr(text string) (companies model.HabrCareer, err error) {
 	companies = model.HabrCareer{}
-	url := "https://functions.yandexcloud.net/d4elf7p5j5ri3hnd5bg7"
+	url := config.ParseHabrCareer
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Println(err)

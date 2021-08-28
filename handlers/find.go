@@ -22,7 +22,7 @@ func Find(c *gin.Context) {
 	}
 	var wg sync.WaitGroup
 	wg.Add(3)
-	var itemsHH []model.HHItem
+	var itemsHH []model.HHCompany
 	var itemsRospatent []model.UtilityModel
 	var parseHabr model.HabrCareer
 	go func() {

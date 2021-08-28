@@ -21,10 +21,12 @@ func Find(c *gin.Context) {
 		return
 	}
 	var wg sync.WaitGroup
-	wg.Add(3)
+	wg.Add(5)
 	var itemsHH []model.HHCompany
 	var itemsRospatent []model.UtilityModel
 	var parseHabr model.HabrCareer
+	var parseSuppliers model.Suppliers
+	var parseRBK model.RBK
 	go func() {
 		itemsHH, err = sources.ParseHH(jsonInput.Text)
 		wg.Done()
@@ -35,6 +37,14 @@ func Find(c *gin.Context) {
 	}()
 	go func() {
 		parseHabr, err = sources.ParseHabr(jsonInput.Text)
+		wg.Done()
+	}()
+	go func() {
+		parseSuppliers, err = sources.ParseSuppliers(jsonInput.Text)
+		wg.Done()
+	}()
+	go func() {
+		parseRBK, err = sources.ParseRBK(jsonInput.Text)
 		wg.Done()
 	}()
 	wg.Wait()
@@ -48,5 +58,7 @@ func Find(c *gin.Context) {
 		"hhRu":       itemsHH,
 		"rospatent":  itemsRospatent,
 		"habrCareer": parseHabr.Companies,
+		"suppliers":  parseSuppliers.Companies,
+		"RBK":        parseRBK.Companies,
 	})
 }

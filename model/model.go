@@ -2,29 +2,21 @@ package model
 
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
-type Company struct {
-	Name        string
-	Description string
-	Authors     []interface{}
-	Patents     []interface{}
-	Contacts    interface{}
-}
-
 type UtilityModel struct {
 	Id                     primitive.ObjectID `bson:"_id" json:"id"`
-	RegistrationNumber     string             `json:"registration number"`
-	RegistrationDate       string             `json:"registration date"`
-	ApplicationNumber      string             `json:"application number"`
-	ApplicationDate        string             `json:"application date"`
-	Authors                string             `json:"authors"`
-	AuthorsInLatin         string             `json:"authors in latin"`
-	PatentHolders          string             `json:"patent holders"`
-	PatentHoldersInLatin   string             `json:"patent holders in latin"`
+	RegistrationNumber     string             `json:"registration number" bson:"registration number"`
+	RegistrationDate       string             `json:"registration date" bson:"registration date"`
+	ApplicationNumber      string             `json:"application number" bson:"application number"`
+	ApplicationDate        string             `json:"application date" bson:"application date"`
+	Authors                string             `json:"authors" bson:"authors"`
+	AuthorsInLatin         string             `json:"authors in latin" bson:"authors in latin"`
+	PatentHolders          string             `json:"patent holders" bson:"patent holders"`
+	PatentHoldersInLatin   string             `json:"patent holders in latin" bson:"patent holders in latin"`
 	UtilityModelName       string             `json:"utility model name" bson:"utility model name"`
-	PatentStartingDate     string             `json:"patent starting date"`
-	PatentGrantPublishDate string             `json:"patent grant publish date"`
-	Actual                 string             `json:"actual"`
-	PublicationURL         string             `json:"publication URL"`
+	PatentStartingDate     string             `json:"patent starting date" bson:"patent starting date"`
+	PatentGrantPublishDate string             `json:"patent grant publish date" bson:"patent grant publish date"`
+	Actual                 string             `json:"actual" bson:"actual"`
+	PublicationURL         string             `json:"publication URL" bson:"publication URL"`
 }
 
 type HabrCareer struct {
@@ -73,7 +65,7 @@ type HHCompany struct {
 	Id                 string `json:"id"`
 	SiteUrl            string `json:"site_url"`
 	Description        string `json:"description"`
-	BrandedDescription string `json:"branded_description"`
+	BrandedDescription string `json:"-"`
 	VacanciesUrl       string `json:"vacancies_url"`
 	OpenVacancies      int    `json:"open_vacancies"`
 	Trusted            bool   `json:"trusted"`
@@ -98,4 +90,23 @@ type HHCompany struct {
 		Id   string `json:"id"`
 		Name string `json:"name"`
 	} `json:"industries"`
+}
+
+type Suppliers struct {
+	Companies []struct {
+		AllSees string `json:"allSees"`
+		City    string `json:"city"`
+		ID      string `json:"id"`
+		Name    string `json:"name"`
+		Type    string `json:"type"`
+	} `json:"companies"`
+}
+
+type RBK struct {
+	Companies []struct {
+		Category string `json:"category"`
+		Link     string `json:"link"`
+		Name     string `json:"name"`
+		Text     string `json:"text"`
+	} `json:"companies"`
 }

@@ -19,6 +19,24 @@ type UtilityModel struct {
 	PublicationURL         string             `json:"publication URL" bson:"publication URL"`
 }
 
+type HHReply struct {
+	PerPage int      `json:"per_page"`
+	Page    int      `json:"page"`
+	Pages   int      `json:"pages"`
+	Found   int      `json:"found"`
+	Items   []HHItem `json:"items"`
+}
+
+type HHItem struct {
+	Id            string      `json:"id"`
+	Name          string      `json:"name"`
+	Url           string      `json:"url"`
+	AlternateUrl  string      `json:"alternate_url"`
+	VacanciesUrl  string      `json:"vacancies_url"`
+	OpenVacancies int         `json:"open_vacancies"`
+	LogoUrls      interface{} `json:"logo_urls"`
+}
+
 type HabrCareer struct {
 	Companies []struct {
 		Addresses []string `json:"addresses"`
@@ -39,24 +57,6 @@ type HabrCareer struct {
 		Site   string   `json:"site"`
 		Skills []string `json:"skills"`
 	} `json:"companies"`
-}
-
-type HHReply struct {
-	PerPage int      `json:"per_page"`
-	Page    int      `json:"page"`
-	Pages   int      `json:"pages"`
-	Found   int      `json:"found"`
-	Items   []HHItem `json:"items"`
-}
-
-type HHItem struct {
-	Id            string      `json:"id"`
-	Name          string      `json:"name"`
-	Url           string      `json:"url"`
-	AlternateUrl  string      `json:"alternate_url"`
-	VacanciesUrl  string      `json:"vacancies_url"`
-	OpenVacancies int         `json:"open_vacancies"`
-	LogoUrls      interface{} `json:"logo_urls"`
 }
 
 type HHCompany struct {

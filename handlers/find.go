@@ -59,6 +59,6 @@ func Find(c *gin.Context) {
 		"rospatent":  itemsRospatent,
 		"habrCareer": parseHabr.Companies,
 		"suppliers":  parseSuppliers.Companies,
-		"RBK":        parseRBK.Companies,
+		"RBC":        parseRBK.Companies,
 	})
 }

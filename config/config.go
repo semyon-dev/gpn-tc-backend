@@ -7,8 +7,9 @@ import (
 )
 
 var (
-	MongoUrl string
-	Port     string
+	MongoUrl        string
+	Port            string
+	ParseHabrCareer string
 )
 
 func Load() {
@@ -18,4 +19,5 @@ func Load() {
 	}
 	MongoUrl = os.Getenv("MONGO_URL")
 	Port = os.Getenv("PORT")
+	ParseHabrCareer = os.Getenv("PARSE_HABR_CAREER")
 }

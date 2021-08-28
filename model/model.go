@@ -66,3 +66,36 @@ type HHItem struct {
 	OpenVacancies int         `json:"open_vacancies"`
 	LogoUrls      interface{} `json:"logo_urls"`
 }
+
+type HHCompany struct {
+	Name               string `json:"name"`
+	Type               string `json:"type"`
+	Id                 string `json:"id"`
+	SiteUrl            string `json:"site_url"`
+	Description        string `json:"description"`
+	BrandedDescription string `json:"branded_description"`
+	VacanciesUrl       string `json:"vacancies_url"`
+	OpenVacancies      int    `json:"open_vacancies"`
+	Trusted            bool   `json:"trusted"`
+	AlternateUrl       string `json:"alternate_url"`
+	InsiderInterviews  []struct {
+		Url   string `json:"url"`
+		Id    string `json:"id"`
+		Title string `json:"title"`
+	} `json:"insider_interviews"`
+	LogoUrls struct {
+		Field1   string `json:"90"`
+		Field2   string `json:"240"`
+		Original string `json:"original"`
+	} `json:"logo_urls"`
+	Area struct {
+		Url  string `json:"url"`
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	} `json:"area"`
+	Relations  []interface{} `json:"relations"`
+	Industries []struct {
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	} `json:"industries"`
+}

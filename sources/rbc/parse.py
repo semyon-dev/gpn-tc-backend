@@ -111,7 +111,7 @@ def search_news(name,limit):
                 "text":text,
                 "link":link,
                 "category":categoryAndDate,
-                "link":img,
+                "img":img,
             })
             total+=1
     else:

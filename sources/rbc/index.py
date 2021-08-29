@@ -3,10 +3,8 @@ import requests
 from parse import search_news 
 
 def handler(event, context):
-    # defaultLimit = 5
     limit = 5
     maxLimit = 25
-    headers = {'User-Agent': 'Mozilla/5.0'}
     # Get name by q
     name = ''
     if 'queryStringParameters' in event and 'q' in event['queryStringParameters']:
@@ -26,6 +24,22 @@ def handler(event, context):
     # Get limit
     if 'queryStringParameters' in event and 'limit' in event['queryStringParameters']:
         limit = event['queryStringParameters']['limit']
+    # Convert limit to int or send error
+    try:
+        limit = int(limit)
+    except ValueError:
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Content-Type': 'application/json'
+            },
+            'isBase64Encoded': False,
+            'body': {
+                "error":True,
+                "message":"limit must be int"
+            }
+        }
+    # Check limit on max limit
     if limit > maxLimit:
         return {
             'statusCode': 200,

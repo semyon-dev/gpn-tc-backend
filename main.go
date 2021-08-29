@@ -24,7 +24,6 @@ func main() {
 	})
 
 	app.POST("/find", handlers.Find)
-
 	err := app.Run("0.0.0.0:" + config.Port)
 
 	if err != nil {

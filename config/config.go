@@ -10,14 +10,14 @@ var (
 	MongoUrl        string
 	Port            string
 	ParseHabrCareer string
-	ParseSuppliers string
-	ParseRbk       string
+	ParseSuppliers  string
+	ParseRbk        string
 )
 
 func Load() {
 	err := godotenv.Load()
 	if err != nil {
-		fmt.Println("can't load from file: " + err.Error())
+		fmt.Println("can't load .env file")
 	}
 	MongoUrl = os.Getenv("MONGO_URL")
 	Port = os.Getenv("PORT")

@@ -3,6 +3,7 @@ package model
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type UtilityModel struct {
+	Bench                  int                `json:"bench"`
 	Id                     primitive.ObjectID `bson:"_id" json:"id"`
 	RegistrationNumber     string             `json:"registration number" bson:"registration number"`
 	RegistrationDate       string             `json:"registration date" bson:"registration date"`
@@ -39,6 +40,7 @@ type HHItem struct {
 
 type HabrCareer struct {
 	Companies []struct {
+		Bench     int      `json:"bench"`
 		Addresses []string `json:"addresses"`
 		Contacts  []struct {
 			Link  string `json:"link"`
@@ -60,6 +62,7 @@ type HabrCareer struct {
 }
 
 type HHCompany struct {
+	Bench              int    `json:"bench"`
 	Name               string `json:"name"`
 	Type               string `json:"type"`
 	Id                 string `json:"id"`
@@ -94,6 +97,7 @@ type HHCompany struct {
 
 type Suppliers struct {
 	Companies []struct {
+		Bench   int    `json:"bench"`
 		AllSees string `json:"allSees"`
 		City    string `json:"city"`
 		ID      string `json:"id"`
@@ -104,6 +108,7 @@ type Suppliers struct {
 
 type RBK struct {
 	Companies []struct {
+		Bench    int    `json:"bench"`
 		Category string `json:"category"`
 		Link     string `json:"link"`
 		Name     string `json:"name"`

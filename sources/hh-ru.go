@@ -2,7 +2,6 @@ package sources
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/semyon-dev/gpn-tc-backend/model"
 	"io/ioutil"
 	"log"
@@ -61,7 +60,6 @@ func ParseHH(text string) (companies []model.HHCompany, err error) {
 }
 
 func ParseHHAdditional(url string) (company model.HHCompany, err error) {
-	fmt.Println(url)
 	company = model.HHCompany{}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {

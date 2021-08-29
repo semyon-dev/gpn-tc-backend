@@ -70,11 +70,11 @@ func Find(c *gin.Context) {
 			"RBC":        res[4].(model.RBK).Companies,
 		})
 	case "company":
-	case "patents":
+	case "rospatent":
 		res := FindRosPatent(jsonInput.Text)
 		c.JSON(http.StatusOK, gin.H{
-			"patents": res,
-			"message": "ok",
+			"rospatent": res,
+			"message":   "ok",
 		})
 	case "okved":
 		res := db.FindOkved(jsonInput.Text)

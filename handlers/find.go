@@ -28,6 +28,7 @@ func Find(c *gin.Context) {
 
 	switch jsonInput.Type {
 	case "block":
+		// TODO
 		req := strings.Split(jsonInput.Text, " ")
 		for _, v := range req {
 			if v == "OR" {
@@ -50,6 +51,7 @@ func Find(c *gin.Context) {
 		if err != nil {
 			log.Println(err)
 		}
+		// TODO: find by okved
 		c.JSON(http.StatusOK, gin.H{
 			"hhRu":       res[0].([]model.HHCompany),
 			"rospatent":  res[1].([]model.UtilityModel),
@@ -70,6 +72,17 @@ func Find(c *gin.Context) {
 			"RBC":        res[4].(model.RBK).Companies,
 		})
 	case "company":
+		err, res := FindByNameAll(jsonInput.Text)
+		if err != nil {
+			log.Println(err)
+		}
+		c.JSON(http.StatusOK, gin.H{
+			"hhRu":       res[0].([]model.HHCompany),
+			"rospatent":  res[1].([]model.UtilityModel),
+			"habrCareer": res[2].(model.HabrCareer).Companies,
+			"suppliers":  res[3].(model.Suppliers).Companies,
+			"RBC":        res[4].(model.RBK).Companies,
+		})
 	case "rospatent":
 		res := FindRosPatent(jsonInput.Text)
 		c.JSON(http.StatusOK, gin.H{

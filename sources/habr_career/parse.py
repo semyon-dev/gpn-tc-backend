@@ -49,7 +49,6 @@ def get_company_data(url):
         # print(skill.text)
 
     # get emploee
-    # print("Get employees")
     employees = soup.find_all("a", class_="company_public_member")
     employees_array = []
     for employee in employees:
@@ -90,11 +89,7 @@ def search_company(name, limit):
             if total == limit:
                 break
             name = company.find('div', class_="companies-item-name").find("a", class_="title")
-            # print(name["href"])
-            # print(name.text)
-            # TODO: check if not found
             company_info = get_company_data(name["href"])
-            # print(company_info)
             companies_array.append(company_info)
             total+=1
     else:
@@ -102,6 +97,3 @@ def search_company(name, limit):
         return []
     # return result
     return companies_array
-
-# companies = search_company('сбер',5)
-# print(companies)

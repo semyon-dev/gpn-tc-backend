@@ -3,7 +3,6 @@ import requests
 from parse import search_company 
 
 def handler(event, context):
-    # defaultLimit = 5
     limit = 5
     maxLimit = 25
     headers = {'User-Agent': 'Mozilla/5.0'}
@@ -26,18 +25,34 @@ def handler(event, context):
     # Get limit
     if 'queryStringParameters' in event and 'limit' in event['queryStringParameters']:
         limit = event['queryStringParameters']['limit']
-    if limit > maxLimit:
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Content-Type': 'application/json'
-            },
-            'isBase64Encoded': False,
-            'body': {
-                "error":True,
-                "message":"limit is more than max"
+        # Convert limit to int
+        try:
+            limit = int(limit)
+        except ValueError:
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json'
+                },
+                'isBase64Encoded': False,
+                'body': {
+                    "error":True,
+                    "message":"limit must be int"
+                }
             }
-        }
+        if limit > maxLimit:
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json'
+                },
+                'isBase64Encoded': False,
+                'body': {
+                    "error":True,
+                    "message":"limit is more than max"
+                }
+            }
+            
     companies = search_company(name, int(limit))
     
     return {

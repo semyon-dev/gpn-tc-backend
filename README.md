@@ -15,9 +15,11 @@
 ```
 MONGO_URL="mongodb://127.0.0.1:27017/?compressors=zlib&readPreference=primary&gssapiServiceName=mongodb&appname=MongoDB%20Compass&ssl=false"
 PORT=8080
+# ниже ссылки на парсеры
 PARSE_HABR_CAREER=
 PARSE_SUPPLIERS=
 PARSE_RBK=
+PARSE_OKVED=
 ```
 
 ## Запуск
@@ -25,8 +27,8 @@ PARSE_RBK=
 развертывание сервиса производится на любой операционной системе \
 требуется установленный язык Golang;
 
-`go run app/main.go` 
+`go run app/main.go`
 
-или скомпилировать бинарник 
+или скомпилировать бинарник
 
 `go build app/main.go`

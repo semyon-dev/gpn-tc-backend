@@ -3,7 +3,6 @@ import requests
 from parse import search_company, get_company_data 
 
 def handler(event, context):
-    # defaultLimit = 5
     limit = 5
     maxLimit = 25
     headers = {'User-Agent': 'Mozilla/5.0'}
@@ -11,6 +10,7 @@ def handler(event, context):
     name = ''
     if 'queryStringParameters' in event and 'q' in event['queryStringParameters']:
         name = event['queryStringParameters']['q']
+    # Get company id by id
     id = ''
     if 'queryStringParameters' in event and 'id' in event['queryStringParameters']:
             id = event['queryStringParameters']['id']
@@ -41,20 +41,36 @@ def handler(event, context):
     # Get limit
     if 'queryStringParameters' in event and 'limit' in event['queryStringParameters']:
         limit = event['queryStringParameters']['limit']
-    if limit > maxLimit:
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Content-Type': 'application/json'
-            },
-            'isBase64Encoded': False,
-            'body': {
-                "error":True,
-                "message":"limit is more than max"
+        # Convert limit to int or send error
+        try:
+            limit = int(limit)
+        except ValueError:
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json'
+                },
+                'isBase64Encoded': False,
+                'body': {
+                    "error":True,
+                    "message":"limit must be int"
+                }
             }
-        }
+        if limit > maxLimit:
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json'
+                },
+                'isBase64Encoded': False,
+                'body': {
+                    "error":True,
+                    "message":"limit is more than max"
+                }
+            }
+    # If id set we find by id
     if id != '':
-        company = get_company_data('id57145-tehgrant-ooo')
+        company = get_company_data(id)
         return {
         'statusCode': 200,
         'headers': {
@@ -65,6 +81,7 @@ def handler(event, context):
             "company":company,
         }
     }
+    # Else we find companies by name
     companies = search_company(name, int(limit))
     return {
         'statusCode': 200,

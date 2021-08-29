@@ -12,6 +12,7 @@ var (
 	ParseHabrCareer string
 	ParseSuppliers  string
 	ParseRbk        string
+	ParseOkved      string
 )
 
 func Load() {
@@ -24,4 +25,5 @@ func Load() {
 	ParseHabrCareer = os.Getenv("PARSE_HABR_CAREER")
 	ParseSuppliers = os.Getenv("PARSE_SUPPLIERS")
 	ParseRbk = os.Getenv("PARSE_RBK")
+	ParseOkved = os.Getenv("PARSE_OKVED")
 }

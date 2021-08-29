@@ -20,6 +20,24 @@ type UtilityModel struct {
 	PublicationURL         string             `json:"publication URL" bson:"publication URL"`
 }
 
+type Okved struct {
+	Id   primitive.ObjectID `json:"id" bson:"_id"`
+	Num  string             `json:"num" bson:"num"`
+	Link string             `json:"link" bson:"link"`
+	Name string             `json:"name" bson:"name"`
+}
+
+type ByOkved struct {
+	Companies []struct {
+		Link  string `json:"link"`
+		Name  string `json:"name"`
+		Other []struct {
+			Name  string `json:"name"`
+			Value string `json:"value"`
+		} `json:"other"`
+	} `json:"companies"`
+}
+
 type HHReply struct {
 	PerPage int      `json:"per_page"`
 	Page    int      `json:"page"`

@@ -21,3 +21,17 @@ func FindInUtilityModel(text string) (items []model.UtilityModel) {
 	}
 	return
 }
+
+func FindOkved(text string) (items []model.Okved) {
+	items = []model.Okved{}
+	filter := bson.M{"$text": bson.M{"$search": text}}
+	opts := options.Find().SetSort(bson.M{"score": bson.M{"$meta": "textScore"}}).SetLimit(15).SetSkip(0)
+	cursor, err := db.Collection("okveds").Find(context.Background(), filter, opts)
+	if err != nil {
+		log.Println(err)
+	}
+	if err = cursor.All(context.Background(), &items); err != nil {
+		log.Println(err)
+	}
+	return
+}

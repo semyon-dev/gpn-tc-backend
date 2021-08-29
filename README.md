@@ -2,6 +2,8 @@
 
 Решение для хакатона GPN Tech.Challenge
 
+[Фронтенд здесь](https://github.com/alyush1n/gpn-tc-frontend)
+
 ## Стек бэкенда
 
 * Go 1.16
